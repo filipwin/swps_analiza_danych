@@ -76,13 +76,39 @@ def zad2_polars():
     print(df)
 
 
+def zad3_pandas():
+    print("\n### ZAD 3 ###")
+    df = pd.DataFrame(sales)
+
+    print("=== Rekordy dla miasta Warszawa ===")
+    print(df[df["city"] == "Warszawa"])
+    print()
+
+    print("=== Rekordy dla kategorii Kawa i płatności kartą ===")
+    print(df[(df["category"] == "Kawa") & (df["payment"] == "card")])
+
+
+def zad3_polars():
+    print("\n### ZAD 3 ###")
+    df = pl.DataFrame(sales)
+
+    print("=== Rekordy dla miasta Warszawa ===")
+    print(df.filter(pl.col("city") == "Warszawa"))
+    print()
+
+    print("=== Rekordy dla kategorii Kawa i płatności kartą ===")
+    print(df.filter((pl.col("category") == "Kawa") & (pl.col("payment") == "card")))
+
+
 def main():
     print("\n" + ("=" * 30) + " PANDAS " + ("=" * 30) + "\n")
     zad1_pandas()
     zad2_pandas()
+    zad3_pandas()
     print("\n" + ("=" * 30) + " POLARS " + ("=" * 30) + "\n")
     zad1_polars()
     zad2_polars()
+    zad3_polars()
 
 
 if __name__ == "__main__":

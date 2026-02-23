@@ -17,6 +17,7 @@ sales = [
 
 
 def zad1_pandas():
+    print("\n### ZAD 1 ###")
     df = pd.DataFrame(sales)
 
     print("=== head() ===")
@@ -37,6 +38,7 @@ def zad1_pandas():
 
 
 def zad1_polars():
+    print("\n### ZAD 1 ###")
     df = pl.DataFrame(sales)
 
     print("=== head() ===")
@@ -57,11 +59,30 @@ def zad1_polars():
     print(f"Liczba kolumn: {cols}")
 
 
+def zad2_pandas():
+    print("\n### ZAD 2 ###")
+    df = pd.DataFrame(sales)
+    df["value"] = df["qty"] * df["price"]
+    df = df.sort_values("value", ascending=False)
+    print(df)
+
+
+def zad2_polars():
+    print("\n### ZAD 2 ###")
+    df = pl.DataFrame(sales)
+    df = df.with_columns(
+        (pl.col("qty") * pl.col("price")).alias("value")
+    ).sort("value", descending=True)
+    print(df)
+
+
 def main():
     print("\n" + ("=" * 30) + " PANDAS " + ("=" * 30) + "\n")
     zad1_pandas()
+    zad2_pandas()
     print("\n" + ("=" * 30) + " POLARS " + ("=" * 30) + "\n")
     zad1_polars()
+    zad2_polars()
 
 
 if __name__ == "__main__":
